@@ -149,6 +149,129 @@ Da Multiplikation konstant viel Zeit ben"otigt, liegt die Exponentiation$\mathca
 \begin{frame}{Hier kommt ein kleines Beispiel auf dem Tafel}
 \end{frame}
 
+\section{Kombinatorik}
+\begin{frame}{Kombinatorik}
+\begin{block}{Definition}
+''Combinatorics is a branch of discrete mathematics concerning the study of countable discrete structures``\footnote{Competitive Programming 3}
+\end{block}
+\pause
+Bei ICPC-Aufgaben erkennbar an:
+\begin{itemize}
+\item "Wie viele Moeglichkeiten gibt es, ..?"
+\item "Berechne die Anzahl an X.."
+\item Alles, was mit Zaehlen zu tun hat
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Der Mathetest}
+\begin{block}{Aufgabe}
+Lisa macht ein Austauschsemester in Australien. Um fuer einen Mathetest zu lernen, loest sie Rechen-Aufgaben, die ihr eine Kommilitonin diktiert hat. Leider hat die Kommilitonin nicht gesagt, wie die Aufgaben geklammert sind. \\
+Gegeben die Anzahl an Faktoren, wie viele verschiedene Wege gibt es diese zu klammern?
+\end{block}
+\pause
+Beispiel:
+\begin{itemize}
+\item Gegeben: $\lbrace a, b, c, d \rbrace$
+\item Gesucht: Moeglichkeiten fuer Klammerung
+\item $ a \left( b \left( c d \right) \right) $ , $\left( a b \right) \left( c d \right) $ , $\left( \left( a b \right) c \right) d$ , $\left( a \left( b  c \right) \right) d $ , $ a \left( \left( b  c \right) d \right) $
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Binomialkoeffizient}
+Wie viele Moeglichkeiten gibt es, $k$ Objekte aus einer Menge von $n$ verschiedenen Objekten zu ziehen?
+\pause
+\begin{align*}
+C\left( n,k \right) = \binom{n}{k} = \frac{n!}{\left( n-k \right) ! \times k!}
+\end{align*}
+\pause
+Rekursive Definition:
+\begin{align*}
+C\left( n, 0 \right) &= C\left( n,n \right) = 1 \\
+C\left( n,k \right) &= C\left( n-1,k-1 \right) + C\left( n-1,k \right)
+\end{align*} %Mglkten fuer n-te Zahl plus k-1 Zahlen kleiner n + Mglkten fuer nicht n-te Zahl, also k-1 Zahlen kleiner n
+
+\end{frame}
+
+\begin{frame}{Binomialkoeffizient}
+Tipps:
+\begin{itemize}
+\item Meist interessieren nicht alle Werte von $C \left( n, k \right)$
+\begin{itemize}
+\item Implementierung deshalb mit top-down
+\end{itemize}
+\item Fakultaet kann sehr gross werden
+\begin{itemize}
+\item benutze BigInteger
+\item bei grossem $k$: $C \left( n, k \right) = C \left( n, n-k \right)$
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Catalan Numbers}
+Definition:
+\begin{align*}
+Cat \left( n \right) &= \frac{1}{n+1} \binom{2n}{n} \\
+&= \frac{\left( 2n \right)!}{\left( n+1 \right) \times n! \times n!} = \frac{\left( 2n \right) !}{\left( n+1 \right) ! \times n!} \\
+Cat \left( n + 1 \right) &= \frac{\left( 2n + 2 \right) \times \left( 2n + 1 \right)}{\left( n + 2 \right) \times \left( n + 1 \right)} \times Cat \left( n \right)
+\end{align*}
+\end{frame}
+
+\begin{frame}{Catalan Numbers}
+$Cat \left( n \right)$ entspricht zum Beispiel:
+\begin{itemize}
+\item Anzahl verschiedener Binaer-Baeume mit $n$ Knoten
+\item Anzahl korrekter Klammerausdruecke mit $n$ Klammerpaaren
+\item Anzahl verschiedener Moeglichkeiten, $n+1$ Faktoren korrekt zu klammern
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Der Mathetest}
+\begin{block}{Aufgabe}
+Lisa macht ein Austauschsemester in Australien. Um fuer einen Mathetest zu lernen, loest sie Rechen-Aufgaben, die ihr eine Kommilitonin diktiert hat. Leider hat die Kommilitonin nicht gesagt, wie die Aufgaben geklammert sind. \\
+Gegeben die Anzahl an Faktoren, wie viele verschiedene Wege gibt es diese zu klammern?
+\end{block}
+\pause
+Loesung:
+\begin{itemize}
+\item Sei $n$ die Anzahl an Faktoren
+\item $Cat \left( n-1 \right)$ loest die Aufgabe
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Zusammenfassung - Kombinatorik bei ICPC}
+Die Loesung fuer eine Kombinatorik-ICPC-Aufgabe ist meist eine kurze rekursive Formel, oft in Verbindung mit Greedy oder DP. Der Aufwand liegt nicht in der Implementierung, sondern im Aufstellen der Formel.
+\pause
+\begin{itemize}
+\item Kombinatorik-Aufgaben von \textbf{einer} Person bearbeiten lassen
+\pause
+\begin{itemize}
+\item bestenfalls mit guten mathematischen Kenntnissen
+\end{itemize}
+\pause
+\item Sobald die Formel fertig ist, Loesung coden und abgeben!
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Zusatz-Tipp!}
+Gaenige Formeln sollte man kennen... \\
+
+\end{frame}
+
+\begin{frame}{Zusatz-Tipp!}
+Gaenige Formeln sollte man kennen... \\
+
+
+
+...oder ausprobieren! \\
+
+\end{frame}
+
+\begin{frame}{Zusatz-Tipp!}
+\begin{block}{On-Line Encyclopedia of Integer Sequences}
+Unter http://oeis.org/ kann man die ersten Loesungen fuer kleine Probleminstanzen eingeben und so pruefen, ob bereits eine Formel fuer diese Folge existiert.
+\end{block}
+
+\end{frame}
 
 \section{Section 1}
 \subsection{Subsection 1.1}
