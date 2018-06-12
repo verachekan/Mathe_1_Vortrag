@@ -150,12 +150,28 @@ Da Multiplikation konstant viel Zeit ben"otigt, liegt die Exponentiation$\mathca
 \end{frame}
 
 \section{Kombinatorik}
+
+
+\begin{frame}{Kombinatorik}
+\begin{block}{Definition}
+	''Combinatorics is a branch of discrete mathematics concerning the study of countable discrete structures``\footnote{Competitive Programming 3}
+\end{block}
+\pause
+Bei ICPC-Aufgaben erkennbar an:
+\begin{itemize}
+	\item "Wie viele Moeglichkeiten gibt es, ..?"
+	\item "Berechne die Anzahl an X.."
+	\item Alles, was mit Zaehlen zu tun hat
+\end{itemize}
+\end{frame}
+
+
 \begin{frame}{Aufgabe - Mauerbau}
 \begin{itemize}
 	\item Baue eine Mauer aus bestimmten Ziegeln.
 	\item jeder Ziegel ist 2 Einheiten breit und 1 Einheit hoch und kann beliebig gedreht werden.
 	\item jede Mauer is 2 Einheiten hoch und \(m\) Einheiten breit (\(0<m<=50\)). 
-	\item Aufgabe: Wie viele Baumöglichkeiten?
+	\item Aufgabe: Wie viele Kombinationen an Ziegelsteinen gibt es?
 \end{itemize}
 \end{frame}
 
@@ -173,23 +189,16 @@ Sollte man erkennen!
 
 
 \begin{frame}{Fibonacci - Implementierung}
-Mit DP in O(n)\\
-Binet's Formel\\ //TODO: soll die hier rein? testcase schreiben ab wann zu ungenau
-Alternativ: vorberechnen wärend andere Aufgaben gelöst werden.\\
-Achtung: Wird sehr schnell sehr groß.
-
-\end{frame}
-
-\begin{frame}{Kombinatorik}
-\begin{block}{Definition}
-''Combinatorics is a branch of discrete mathematics concerning the study of countable discrete structures``\footnote{Competitive Programming 3}
-\end{block}
-\pause
-Bei ICPC-Aufgaben erkennbar an:
 \begin{itemize}
-\item "Wie viele Moeglichkeiten gibt es, ..?"
-\item "Berechne die Anzahl an X.."
-\item Alles, was mit Zaehlen zu tun hat
+\item Mit DP in O(n)
+\item Binet's Formel: \\
+\(f(n) = \frac{(\phi^{n} - (-\phi)^{-n}) }{ \sqrt{5}}\)\\
+\(\phi :=\)  goldener Schnitt\\
+\(\phi = \frac{ (1+\sqrt{5})}{2}\)\\
+\(\phi\) gerundet nutzen. Anzahl der Nachkommastellen entscheidet über Genauigkeit!
+
+\item oder vorberechnen!\\
+\item Achtung: Wird sehr schnell sehr groß.
 \end{itemize}
 \end{frame}
 
