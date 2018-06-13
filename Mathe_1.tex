@@ -49,7 +49,7 @@
 
 % the presentation starts here
 
-\title[Short title]{Mathe-1}
+\title[Mathe 1]{Mathe 1}
 %\subtitle{Something for XYZ 2009}
 \author{Charlotte P., Lena W., Vera C., Christian K.}
 
@@ -80,11 +80,11 @@
 \begin{frame}{Big integer}
 \begin {itemize}
 \item die maximale Zahl ist gr"o"ser als integer?
-\pause 
+ 
 \item nehme long long
-\pause
+
 \item die Zahl ist gr"o"ser als long long
-\pause 
+ 
 \item ?????????????????????????????????? (Panik) 
 \end {itemize}
 \end{frame}
@@ -156,7 +156,7 @@ Da Multiplikation konstant viel Zeit ben"otigt, liegt die Exponentiation$\mathca
 \begin{block}{Definition}
 	''Combinatorics is a branch of discrete mathematics concerning the study of countable discrete structures``\footnote{Competitive Programming 3}
 \end{block}
-\pause
+
 Bei ICPC-Aufgaben erkennbar an:
 \begin{itemize}
 	\item "Wie viele Moeglichkeiten gibt es, ..?"
@@ -170,7 +170,7 @@ Bei ICPC-Aufgaben erkennbar an:
 \begin{itemize}
 	\item Baue eine Mauer aus bestimmten Ziegeln.
 	\item jeder Ziegel ist 2 Einheiten breit und 1 Einheit hoch und kann beliebig gedreht werden.
-	\item jede Mauer is 2 Einheiten hoch und \(m\) Einheiten breit (\(0<m<=50\)). 
+	\item jede Mauer ist 2 Einheiten hoch und \(m\) Einheiten breit (\(0<m<=50\)). 
 	\item Aufgabe: Wie viele Kombinationen an Ziegelsteinen gibt es?
 \end{itemize}
 \end{frame}
@@ -204,10 +204,9 @@ Sollte man erkennen!
 
 \begin{frame}{Der Mathetest}
 \begin{block}{Aufgabe}
-Lisa macht ein Austauschsemester in Australien. Um fuer einen Mathetest zu lernen, loest sie Rechen-Aufgaben, die ihr eine Kommilitonin diktiert hat. Leider hat die Kommilitonin nicht gesagt, wie die Aufgaben geklammert sind. \\
+Lisa macht ein Austauschsemester in Australien. Um f"ur einen Mathetest zu lernen, l"ost sie Rechen-Aufgaben, die ihr eine Kommilitonin diktiert hat. Leider hat die Kommilitonin nicht gesagt, wie die Aufgaben geklammert sind. \\
 Gegeben die Anzahl an Faktoren, wie viele verschiedene Wege gibt es diese zu klammern?
 \end{block}
-\pause
 Beispiel:
 \begin{itemize}
 \item Gegeben: $\lbrace a, b, c, d \rbrace$
@@ -218,11 +217,10 @@ Beispiel:
 
 \begin{frame}{Binomialkoeffizient}
 Wie viele Moeglichkeiten gibt es, $k$ Objekte aus einer Menge von $n$ verschiedenen Objekten zu ziehen?
-\pause
+
 \begin{align*}
 C\left( n,k \right) = \binom{n}{k} = \frac{n!}{\left( n-k \right) ! \times k!}
 \end{align*}
-\pause
 Rekursive Definition:
 \begin{align*}
 C\left( n, 0 \right) &= C\left( n,n \right) = 1 \\
@@ -238,10 +236,10 @@ Tipps:
 \begin{itemize}
 \item Implementierung deshalb mit top-down
 \end{itemize}
-\item Fakultaet kann sehr gross werden
+\item Fakult"at kann sehr groß werden
 \begin{itemize}
 \item benutze BigInteger
-\item bei grossem $k$: $C \left( n, k \right) = C \left( n, n-k \right)$
+\item bei großem $k$: $C \left( n, k \right) = C \left( n, n-k \right)$
 \end{itemize}
 \end{itemize}
 \end{frame}
@@ -255,12 +253,12 @@ Cat \left( n + 1 \right) &= \frac{\left( 2n + 2 \right) \times \left( 2n + 1 \ri
 \end{align*}
 \end{frame}
 
-\begin{frame}{Catalan Numbers}
+\begin{frame}{Catalan Nummern}
 $Cat \left( n \right)$ entspricht zum Beispiel:
 \begin{itemize}
-\item Anzahl verschiedener Binaer-Baeume mit $n$ Knoten
+\item Anzahl verschiedener Bin"ar-B"aume mit $n$ Knoten
 \item Anzahl korrekter Klammerausdruecke mit $n$ Klammerpaaren
-\item Anzahl verschiedener Moeglichkeiten, $n+1$ Faktoren korrekt zu klammern
+\item Anzahl verschiedener M"oglichkeiten, $n+1$ Faktoren korrekt zu klammern
 \end{itemize}
 \end{frame}
 
@@ -269,45 +267,35 @@ $Cat \left( n \right)$ entspricht zum Beispiel:
 Lisa macht ein Austauschsemester in Australien. Um fuer einen Mathetest zu lernen, loest sie Rechen-Aufgaben, die ihr eine Kommilitonin diktiert hat. Leider hat die Kommilitonin nicht gesagt, wie die Aufgaben geklammert sind. \\
 Gegeben die Anzahl an Faktoren, wie viele verschiedene Wege gibt es diese zu klammern?
 \end{block}
-\pause
-Loesung:
+L"osung:
 \begin{itemize}
 \item Sei $n$ die Anzahl an Faktoren
-\item $Cat \left( n-1 \right)$ loest die Aufgabe
+\item $Cat \left( n-1 \right)$ l"ost die Aufgabe
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Zusammenfassung - Kombinatorik bei ICPC}
-Die Loesung fuer eine Kombinatorik-ICPC-Aufgabe ist meist eine kurze rekursive Formel, oft in Verbindung mit Greedy oder DP. Der Aufwand liegt nicht in der Implementierung, sondern im Aufstellen der Formel.
-\pause
+Die L"osung f"ur eine Kombinatorik-ICPC-Aufgabe ist meist eine kurze rekursive Formel, oft in Verbindung mit Greedy oder DP. Der Aufwand liegt nicht in der Implementierung, sondern im Aufstellen der Formel.
 \begin{itemize}
 \item Kombinatorik-Aufgaben von \textbf{einer} Person bearbeiten lassen
-\pause
+
 \begin{itemize}
 \item bestenfalls mit guten mathematischen Kenntnissen
 \end{itemize}
-\pause
-\item Sobald die Formel fertig ist, Loesung coden und abgeben!
+
+\item Sobald die Formel fertig ist, L"osung coden und abgeben!
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Zusatz-Tipp!}
-Gaenige Formeln sollte man kennen... \\
-
-\end{frame}
-
-\begin{frame}{Zusatz-Tipp!}
-Gaenige Formeln sollte man kennen... \\
-
-
-
+G"anige Formeln sollte man kennen... \\
 ...oder ausprobieren! \\
 
 \end{frame}
 
 \begin{frame}{Zusatz-Tipp!}
 \begin{block}{On-Line Encyclopedia of Integer Sequences}
-Unter http://oeis.org/ kann man die ersten Loesungen fuer kleine Probleminstanzen eingeben und so pruefen, ob bereits eine Formel fuer diese Folge existiert.
+Unter http://oeis.org/ kann man die ersten L"osungen f"ur kleine Probleminstanzen eingeben und so pr"ufen, ob bereits eine Formel f"ur diese Folge existiert.
 \end{block}
 
 \end{frame}
@@ -317,11 +305,8 @@ Unter http://oeis.org/ kann man die ersten Loesungen fuer kleine Probleminstanze
 \begin{frame}{Spieltheorie allgemein}
 \begin{itemize}
 \item Nullsummenspiel
-\pause
 \item Genau ein Gewinner
-\pause
 \item Alle spielen perfekt
-\pause
 \item Gibt es eine Gewinnstrategie?
 \end{itemize}
 \end{frame}
@@ -376,7 +361,6 @@ Unter http://oeis.org/ kann man die ersten Loesungen fuer kleine Probleminstanze
 \begin{itemize}
 \item wie gewohnt als Baum
 \lstinputlisting[language=c++]{minmax1.cpp}
-\pause
 \item Spieler-IDs k"onnen weggelassen werden
 \lstinputlisting[language=c++]{minmax2.cpp}
 \end{itemize}
@@ -385,43 +369,33 @@ Unter http://oeis.org/ kann man die ersten Loesungen fuer kleine Probleminstanze
 \begin{frame}{manchmal Optimierung}
 \begin{itemize}
 \item Beispiel: Zahlen abwechselnd mit 2-9 multiplizieren
-\pause
 \item erster "uber n (Grenze) gewinnt
-\pause
 \item je acht Kinder: Viel zu viel
-\pause
 \item optimal: Immer abwechselnd 9 und 2
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Nim-Spiel}
+\begin{frame}{Nimm-Spiel}
 \begin{itemize}
 \item mehrere Haufen mit Objekten
-\pause
 \item zwei Spieler nehmen abwechselnd von einem Haufen
-\pause
 \item Wer das letzte Objekt nimmt, gewinnt
-\pause
 \item F"ur ein oder zwei Haufen mit Baum m"oglich 
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Nim-Spiel: Optimalstrategie}
+\begin{frame}{Nimm-Spiel: Optimalstrategie}
 \begin{itemize}
 \item Anzahl Objekte in Haufen bin"ar mit xor verkn"upfen
-\pause
 \item Summe auf Null bringen, um zu gewinnen
-\pause
 \item Immer m"oglich
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Grundy-Zahlen}
 \begin{itemize}
-\item Theorem von Sprague-Grundy: Jedes neutrale Spiel "aquivalent zu Standard-Nim-Spiel
-\pause
+\item Theorem von Sprague-Grundy: Jedes neutrale Spiel "aquivalent zu Standard-Nimm-Spiel
 \item Grundy-Zahlen: kleinste Zahl, die nicht Grundy-Zahl von Nachfolgerstellung ist
-\pause
 \item Gewinnstrategie: Grundy-Zahl m"oglichst immer auf 0 bringen
 \end{itemize}
 \end{frame}
