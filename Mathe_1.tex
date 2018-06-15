@@ -315,24 +315,19 @@ Unter http://oeis.org/ kann man die ersten L"osungen f"ur kleine Probleminstanze
 
 \begin{frame}{Beispielspiel}
 \begin{itemize}
-\item sechs M"unzen, zwei Spieler
-\pause
-\item immer abwechselnd maximal drei M"unzen nehmen
-\pause
-\item Wer die letzte M"unze nimmt, gewinnt
+\begin{block}{simples Beispielspiel}
+Alice und Bob haben sechs M"unzen in der Mitte liegen und nehmen abwechselnd je eine bis drei davon. Wer die letzte M"unze nimmt, gewinnt.
+\end{block}
+\item Spielbaum benutzen
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Spielbaum}
 \begin{itemize}
 \item Knoten: aktueller Spieler und Spielsituation
-\pause
 \item Kanten: legale Spielz"uge
-\pause
 \item Wurzel: Spielsituation beim Start
-\pause
 \item Bl"atter: Geben Bewertung (-1 oder 1) an
-\pause
 \end{itemize}
 \end{frame}
 
@@ -377,7 +372,7 @@ Unter http://oeis.org/ kann man die ersten L"osungen f"ur kleine Probleminstanze
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Nimm-Spiel}
+\begin{frame}{Nim-Spiel}
 \begin{itemize}
 \item mehrere Haufen mit Objekten
 \item zwei Spieler nehmen abwechselnd von einem Haufen
@@ -386,19 +381,27 @@ Unter http://oeis.org/ kann man die ersten L"osungen f"ur kleine Probleminstanze
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Nimm-Spiel: Optimalstrategie}
+\begin{frame}{Nim-Spiel: Optimalstrategie}
 \begin{itemize}
 \item Anzahl Objekte in Haufen bin"ar mit xor verkn"upfen
 \item Summe auf Null bringen, um zu gewinnen
 \item Immer m"oglich
+\begin{block}{Beispiel}
+5 Haufen: 6, 3, 5, 2, 7 Elemente \\
+Bin"ar: 110 xor 011 xor 101 x 010 x 111 = 101 $\neq$ 0  \\
+Also Gewinnstrategie f"ur Beginnspieler
+\end{block}
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Grundy-Zahlen}
 \begin{itemize}
-\item Theorem von Sprague-Grundy: Jedes neutrale Spiel "aquivalent zu Standard-Nimm-Spiel
+\item Theorem von Sprague-Grundy: Jedes neutrale Spiel "aquivalent zu Standard-Nim-Spiel
 \item Grundy-Zahlen: kleinste Zahl, die nicht Grundy-Zahl von Nachfolgerstellung ist
 \item Gewinnstrategie: Grundy-Zahl m"oglichst immer auf 0 bringen
+\pause
+\item Bei einem Haufen mit n Elementen ist die Grundy-Zahl n
+\item Im Beispiel: Grundy-Zahl 5
 \end{itemize}
 \end{frame}
 
