@@ -369,14 +369,18 @@ Unter http://oeis.org/ kann man die ersten L"osungen f"ur kleine Probleminstanze
 
 \end{frame}
 
-
 \section{Spieltheorie}
 \begin{frame}{Spieltheorie allgemein}
 \begin{itemize}
-\item Nullsummenspiel
-\item Genau ein Gewinner
+\item Formalisierung und Darstellung von Spielen
+\item Versuch, Spielausgang zu berechnen
+\end{itemize}
+Dabei muss gelten:
+\begin{itemize}
+\item Summe der Gewinne und Verluste aller Spieler betr"agt 0 (Nullsummenspiel)
+\item Meistens ein Gewinner (+1) und ein Verlierer (-1)
+\item Spiel ist ohne Zufall
 \item Alle spielen perfekt
-\item Gibt es eine Gewinnstrategie?
 \end{itemize}
 \end{frame}
 
@@ -389,28 +393,61 @@ Alice und Bob haben sechs M"unzen in der Mitte liegen und nehmen abwechselnd je 
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Spielbaum}
+\begin{frame}{Erstellen eines Spielbaumes}
+Schritt 1:
 \begin{itemize}
 \item Knoten: aktueller Spieler und Spielsituation
 \item Kanten: legale Spielz"uge
 \item Wurzel: Spielsituation beim Start
-\item Bl"atter: Geben Bewertung (-1 oder 1) an
+\end{itemize}
+\pause
+Schritt 2:
+\begin{itemize}
+\item An Bl"atter des Baumes Ergebnis schreiben
+\item Von unten nach oben Ergebnis berechnen
 \end{itemize}
 \end{frame}
+
+\begin{frame}{Erstellen eines Spielbaumes}
+\includegraphics[scale=0.55]{baum0.png}
+\end{frame}
+
+\begin{frame}{Erstellen eines Spielbaumes}
+\includegraphics[scale=0.55]{baum1.png}
+\end{frame}
+
+\begin{frame}{Erstellen eines Spielbaumes}
+\includegraphics[scale=0.55]{baum2.png}
+\end{frame}
+
+\begin{frame}{Erstellen eines Spielbaumes}
+\includegraphics[scale=0.55]{baum3.png}
+\end{frame}
+
+\begin{frame}{Erstellen eines Spielbaumes}
+\includegraphics[scale=0.55]{baum4.png}
+\end{frame}
+
+\begin{frame}{Erstellen eines Spielbaumes}
+\includegraphics[scale=0.55]{baum5.png}
+\end{frame}
+
+\begin{frame}{Erstellen eines Spielbaumes}
+\includegraphics[scale=0.55]{baum6.png}
+\end{frame}
+
+\begin{frame}{Erstellen eines Spielbaumes}
+\includegraphics[scale=0.55]{baum7.png}
+\end{frame}
+
+\begin{frame}{Erstellen eines Spielbaumes}
+\includegraphics[scale=0.55]{baum8.png}
+\end{frame}
+
 
 \begin{frame}{Min-Max-Strategie}
 \begin{itemize}
 \item Min-Max-Strategie: Gewinn mit gr"o"stem Unterschied
-\begin{equation}
-   minmax(s,k) =
-   \begin{cases}
-     k.Bewertung & \text{für k Blatt-Knoten} \\
-     min\left\{minmax(k') | k' Kindknoten\right\} & \text{falls s = min} \\
-     max\left\{minmax(k') | k' Kindknoten\right\} & \text{falls s = max} \\
-   \end{cases}
-\end{equation}
-\pause
-\item Spieler-IDs k"onnen auch weggelassen werden: 
 \begin{equation}
    minmax(k) =
    \begin{cases}
@@ -421,42 +458,108 @@ Alice und Bob haben sechs M"unzen in der Mitte liegen und nehmen abwechselnd je 
 \end{itemize}
 \end{frame}
 
+\begin{frame}{Andere Berechnungsm"oglichkeit}
+\includegraphics[scale=0.55]{baum10.png}
+\end{frame}
+
+\begin{frame}{Andere Berechnungsm"oglichkeit}
+\includegraphics[scale=0.55]{baum11.png}
+\end{frame}
+
+\begin{frame}{Andere Berechnungsm"oglichkeit}
+\includegraphics[scale=0.55]{baum12.png}
+\end{frame}
+
+\begin{frame}{Andere Berechnungsm"oglichkeit}
+\includegraphics[scale=0.55]{baum13.png}
+\end{frame}
+
+\begin{frame}{Andere Berechnungsm"oglichkeit}
+\includegraphics[scale=0.55]{baum14.png}
+\end{frame}
+
+\begin{frame}{Andere Berechnungsm"oglichkeit}
+\includegraphics[scale=0.55]{baum15.png}
+\end{frame}
+
+\begin{frame}{Andere Berechnungsm"oglichkeit}
+\includegraphics[scale=0.55]{baum16.png}
+\end{frame}
+
+\begin{frame}{Andere Berechnungsm"oglichkeit}
+\includegraphics[scale=0.55]{baum17.png}
+\end{frame}
+
+\begin{frame}{Andere Berechnungsm"oglichkeit}
+\includegraphics[scale=0.55]{baum18.png}
+\end{frame}
+
+\begin{frame}{Min-Max-Strategie}
+\begin{itemize}
+\item Min-Max-Strategie: Gewinn mit gr"o"stem Unterschied
+\begin{equation}
+   minmax(k) =
+   \begin{cases}
+     k.Bewertung & \text{f"ur k Blatt-Knoten} \\
+     - min\left\{minmax(k') | k' Kindknoten\right\} & \text{sonst} \\
+   \end{cases}
+\end{equation}
+\item Andere M"oglichkeit der Berechnung:
+\begin{equation}
+   minmax(s,k) =
+   \begin{cases}
+     k.Bewertung & \text{f"ur k Blatt-Knoten} \\
+     min\left\{minmax(k') | k' Kindknoten\right\} & \text{falls s = A} \\
+     max\left\{minmax(k') | k' Kindknoten\right\} & \text{falls s = B} \\
+   \end{cases}
+\end{equation}
+\end{itemize}
+\end{frame}
+
 \begin{frame}{Implementierung}
 \begin{itemize}
-\item wie gewohnt als Baum
+\item Wie gewohnt als Baum
 \lstinputlisting[language=c++]{minmax1.cpp}
 \item Spieler-IDs k"onnen weggelassen werden
 \lstinputlisting[language=c++]{minmax2.cpp}
 \end{itemize}
 \end{frame}
 
-\begin{frame}{manchmal Optimierung}
+\begin{frame}{Nachdenken nicht vergessen}
+\begin{block}{Beispiel}
+Die Spieler A und B multiplizieren x abwechselnd mit einer Zahl von 2 bis 9. Am Anfang ist x=1. Wer zuerst "uber eine Grenze n kommt, gewinnt.
+\end{block}
+\pause
 \begin{itemize}
-\item Beispiel: Zahlen abwechselnd mit 2-9 multiplizieren
-\item erster "uber n (Grenze) gewinnt
-\item je acht Kinder: Viel zu viel
-\item optimal: Immer abwechselnd 9 und 2
+\item Problem: Je acht Kindknoten: Baum wird zu gro"s
+\item L"osung: Optimale Strategie anhand kleiner B"aume herleiten
+\item Im Beispiel: A nimmt immer 2, B immer 9 als Faktor
 \end{itemize}
+\pause
+\begin{block}{Fazit}
+Falls m"oglich, anhand kleiner Teilb"aume Regel herleiten, statt direkt anzufangen, zu implementieren.
+\end{block}
 \end{frame}
 
 \begin{frame}{Nim-Spiel}
 \begin{itemize}
-\item mehrere Haufen mit Objekten
-\item zwei Spieler nehmen abwechselnd von einem Haufen
+\item Mehrere Haufen mit Objekten
+\item Zwei Spieler nehmen abwechselnd von einem Haufen
 \item Wer das letzte Objekt nimmt, gewinnt
-\item F"ur ein oder zwei Haufen mit Baum m"oglich 
+\item F"ur wenigei Haufen mit Spielbaum modellierbar
+\item F"ur viele Haufen eigene Optimalstrategie n"otig
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Nim-Spiel: Optimalstrategie}
 \begin{itemize}
-\item Anzahl Objekte in Haufen bin"ar mit xor verkn"upfen
-\item Summe auf Null bringen, um zu gewinnen
-\item Immer m"oglich
+\item Nim-Zahl: Anzahl Objekte in Haufen bin"ar mit XOR verkn"upfen
+\item Gewinnstrategie: In jedem Zug die Nim-Zahl auf 0 bringen
 \begin{block}{Beispiel}
-5 Haufen: 6, 3, 5, 2, 7 Elemente \\
-Bin"ar: 110 xor 011 xor 101 x 010 x 111 = 101 $\neq$ 0  \\
-Also Gewinnstrategie f"ur Beginnspieler
+5 Haufen mit 6, 3, 5, 2 und 7 Elemente \\
+Bin"ar: 110\textsubscript{2}, 011\textsubscript{2}, 101\textsubscript{2}, 010\textsubscript{2} und 111\textsubscript{2} Elemente\\
+Dann: 110\textsubscript{2} XOR 011\textsubscript{2} XOR 101\textsubscript{2} XOR 010\textsubscript{2} XOR 111\textsubscript{2} = 101\textsubscript{2} \\
+Der Spieler am Zug hat also die M"oglichkeit, die Nim-Zahl auf 0 zu bringen (z. B. indem er vom letzten Stapel 5 Elemente entfernt), und hat somit eine Gewinnstrategie.
 \end{block}
 \end{itemize}
 \end{frame}
@@ -465,11 +568,35 @@ Also Gewinnstrategie f"ur Beginnspieler
 \begin{itemize}
 \item Theorem von Sprague-Grundy: Jedes neutrale Spiel "aquivalent zu Standard-Nim-Spiel
 \item Grundy-Zahlen: kleinste Zahl, die nicht Grundy-Zahl von Nachfolgerstellung ist
-\item Gewinnstrategie: Grundy-Zahl m"oglichst immer auf 0 bringen
-\pause
-\item Bei einem Haufen mit n Elementen ist die Grundy-Zahl n
-\item Im Beispiel: Grundy-Zahl 5
+\item Nim-Zahlen entsprechen Grundy-Zahlen
+\item Gewinnstrategie: Grundy-Zahl in jedem Zug auf 0 bringen
 \end{itemize}
+\end{frame}
+
+\begin{frame}{Grundy-Zahlen - Beispiel}
+\begin{block}{Beispiel}
+Es gibt drei Haufen mit einem, zwei und drei Elementen. Berechne die Grundy-Zahl dieser Situation
+\end{block}
+Es gibt sechs m"ogliche Nachfolgerzust"ande:
+\begin{itemize}
+\pause
+\item 0, 2 und 3 Elemente: 000\textsubscript{2} XOR 010\textsubscript{2} XOR 011\textsubscript{2} = 001\textsubscript{2} = 1
+\pause
+\item 1, 1 und 3 Elemente: 001\textsubscript{2} XOR 001\textsubscript{2} XOR 011\textsubscript{2} = 011\textsubscript{2} = 3
+\pause
+\item 1, 0 und 3 Elemente: 001\textsubscript{2} XOR 000\textsubscript{2} XOR 011\textsubscript{2} = 010\textsubscript{2} = 2
+\pause
+\item 1, 2 und 0 Elemente: 001\textsubscript{2} XOR 010\textsubscript{2} XOR 000\textsubscript{2} = 011\textsubscript{2} = 3
+\pause
+\item 1, 2 und 1 Elemente: 001\textsubscript{2} XOR 010\textsubscript{2} XOR 001\textsubscript{2} = 010\textsubscript{2} = 2
+\pause
+\item 1, 2 und 2 Elemente: 001\textsubscript{2} XOR 010\textsubscript{2} XOR 010\textsubscript{2} = 010\textsubscript{2} = 2
+\pause
+\item Kleinste nicht vorkommende Zahl ist 0, also keine Gewinnstrategie
+\end{itemize}
+\end{frame}
+
+\begin{frame}{ICPC-Aufgabe}
 \end{frame}
 
 
