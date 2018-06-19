@@ -18,6 +18,8 @@
 % for widescreen slides (16:9), use 'beamerthemekitwide'
 \usepackage{listings}
 \usepackage{templates/beamerthemekit}
+\usepackage{algorithm}
+\usepackage{algorithmic}
 % \usepackage{templates/beamerthemekitwide}
 
 %% TITLE PICTURE
@@ -120,8 +122,35 @@
 \end{frame}
 
 \section {Exponentiation by squaring}
-\begin{frame} {Naive Exponentiation} 
-\lstinputlisting[language=c++]{exp.cpp}
+
+\begin{algorithm}
+\scriptsize 
+\caption{Bereche $y = x^n$ naiv}
+\begin{algorithmic}
+ 
+\REQUIRE $n \geq 0 \vee x \neq 0$
+\ENSURE $y = x^n$
+\STATE $y \leftarrow 1$
+\IF{$n < 0$}
+\STATE $X \leftarrow 1 / x$
+\STATE $N \leftarrow -n$
+\ELSE
+\STATE $X \leftarrow x$
+\STATE $N \leftarrow n$
+\ENDIF
+\WHILE{$N \neq 0$}
+\IF{$N$ is even}
+\STATE $X \leftarrow X \times X$
+\STATE $N \leftarrow N / 2$
+\ELSE[$N$ is odd]
+\STATE $y \leftarrow y \times X$
+\STATE $N \leftarrow N - 1$
+\ENDIF
+\ENDWHILE
+\end{algorithmic}
+\end{algorithm}
+
+\begin{frame} {Naive Exponentiation}
 Bei ICPC gehen wir davon aus, dass Multiplikation zweier Zahlen in $\mathcal{O}(1)$ liegt, also naive Exponentiation in $\mathcal{O}(n)$
 \end{frame}
 
@@ -136,13 +165,51 @@ Beobachtung:
 \end{equation}
 \end{frame}
 
-\begin{frame} {Exponentiation by squaring, rekursive Implementierung}
-\lstinputlisting[language=c++]{recExpSq.cpp}
-\end{frame}
 
-\begin{frame} {Exponentiation by squaring, iterative Implementierung}
-\lstinputlisting[language=c++, basicstyle=\tiny]{iterExpSq.cpp}
-\end{frame}
+\begin{algorithm}
+\scriptsize 
+\caption{Exponentiation(n, x) (rekursiv)}
+\begin{algorithmic}
+\IF{$n < 0$}
+\STATE {return Exponentiation(-$n, 1/$x)}
+\ELSIF {$n = 0$}
+\STATE {return 1}
+\ELSIF {$n = 1$} 
+\STATE {return x}
+\ELSIF {$n$ modulo $2 = 0$}
+\STATE {return Exponentiation($n/2$, $x \cdot x$)}
+\ELSE \STATE{return $x \cdot Exponentiation((n-1)/2, x \cdot x)$}
+\ENDIF
+\end{algorithmic}
+\end{algorithm}
+%\begin{frame} {Exponentiation by squaring, rekursive Implementierung}
+%\end{frame}
+
+
+\begin{algorithm}
+\scriptsize 
+\caption{Exponentiation(n, x) (rekursiv)}
+\begin{algorithmic}
+\IF{$n < 0$}
+\STATE {$n = -n$}
+\STATE {$x = 1/x$}
+\ENDIF
+\IF {$n = 0$}
+\STATE {return 1}
+\STATE {$y = 1$}
+\ENDIF
+\WHILE {$n > 1$}
+\IF{$n$ modulo $2 = 0$}
+\STATE {$x = x \cdot x$}
+\STATE {$n = n/2$}
+\ELSE
+\STATE {$y = y\cdot x$}
+\STATE {$x = x \cdot x$}
+\STATE {$n = (n-1)/2$}
+\ENDIF
+\ENDWHILE
+\end{algorithmic}
+\end{algorithm}
 
 \begin{frame} {Exponentiation by squaring, Laufzeit}
 Da Multiplikation konstant viel Zeit ben"otigt, liegt die Exponentiation in $\mathcal{O}(log(n))$
