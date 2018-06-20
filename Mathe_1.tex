@@ -20,6 +20,7 @@
 \usepackage{templates/beamerthemekit}
 \usepackage{algorithm}
 \usepackage{algorithmic}
+
 % \usepackage{templates/beamerthemekitwide}
 
 %% TITLE PICTURE
@@ -100,30 +101,64 @@
 \item BigInteger add(BigInteger val)
 \item BigInteger multiply(BigInteger val)
 \item BigInteger subtract(BigInteger val)
-\item ...
+\item BigInteger abs()
+\item BigInteger compareTo(BigInteger val)
+\item BigInteger[]  divideAndRemainder(BigInteger val) (Division mit Rest)
+\item BigInteger gcd(BigInteger val)
 \end {itemize}
 \end {itemize}
 \end{frame}
-
-\begin{frame} {Laufzeiten}
-\begin {itemize}
-\item Addition, Subtraktion in $\mathcal{O}(n)$
-\item Multiplikation in $\Theta(n^{log_{2}3})$ (Karatsuba)
-\end {itemize}
-\end{frame}
-
 
 \begin{frame} {C++? Selbst implementieren!}
-\begin {itemize}
-\item Addition: Die Tafel ist da $\longrightarrow{}$
-\item Multiplikation (z.B. Karazuba-Multiplikation)
-\end {itemize}
-\includegraphics[scale=0.4]{karatsuba.jpg}
+Schriftliche Addition, Beispiel: \\
+String $x$ = " 12035"  \\
+String $y$ = " 389" \\
+\pause
+vector $v_{x}$ = (5,3,0,2,1)\\
+vector $v_{y}$ = (9,8,3,0,0)\\
+vector $v_{z}$ = ()\\
+\pause
+$v_{z} = (4)$, "Ubertrag = 1\\
+\pause
+$v_{z} = (4,2)$, "Ubertrag = 1\\
+\pause
+$v_{z} = (4,2,4)$, "Ubertrag = 0\\
+\pause
+$v_{z} = (4,2,4,2)$, "Ubertrag = 0\\
+\pause
+$v_{z} = (4,2,4,2,1)$, "Ubertrag = 0\\
+In $v_{z}$ steht das gespiegelte Ergebnis der Addition
+\end{frame} 
+ 
+\begin{frame} {Karazuba-Multiplikation}
+Beobachtung: $(a_{0}+a_{1})\cdot(b_{0}+b_{1})=a_{0}\cdot b_{0} + a_{1}\cdot b_{1} + a_{1}\cdot b_{0}+
+a_{0}\cdot b_{1}$
+\scalebox{1.0}{
+\begin{minipage}{0.9\linewidth}
+\begin{algorithm} [H]
+\scriptsize 
+\caption{recMult(int a, int b)}
+\begin{algorithmic}
+\REQUIRE $a$ und $b$ haben $n$ Ziffern, sei $k=\lfloor n/2 \rfloor$ 
+\IF{$n = 1$}
+\STATE return $a\cdot b$
+\ENDIF
+\STATE schreibe a als $a_{1} \cdot B^{k} + a_{0}$
+\STATE schreibe b als $b_{1} \cdot B^{k} + b_{0}$
+\STATE $c_{11}=recMult(a_{1}, b_{1})$
+\STATE $c_{00}=recMult(a_{0}, b_{0})$
+\STATE return $c_{11} \cdot B^{2k}+(recMult((a_{1}+a_{0}),(b_{1}+b_{0}))-c_{11}-c_{00})\cdot B^{k} + c_{00}$
+\end{algorithmic}
+\end{algorithm}
+\end{minipage}
+}
 \end{frame}
 
 \section {Exponentiation by squaring}
-
-\begin{algorithm}
+\begin{frame} {Naive Exponentiation}
+\scalebox{1.0}{
+\begin{minipage}{1.0\linewidth}
+\begin{algorithm} [H]
 \scriptsize 
 \caption{Bereche $y = x^n$ naiv}
 \begin{algorithmic}
@@ -139,18 +174,14 @@
 \STATE $N \leftarrow n$
 \ENDIF
 \WHILE{$N \neq 0$}
-\IF{$N$ is even}
-\STATE $X \leftarrow X \times X$
-\STATE $N \leftarrow N / 2$
-\ELSE[$N$ is odd]
-\STATE $y \leftarrow y \times X$
-\STATE $N \leftarrow N - 1$
-\ENDIF
+\STATE $y \leftarrow y \cdot X$
+\STATE $N \leftarrow N-1$
 \ENDWHILE
+\STATE return $y$
 \end{algorithmic}
 \end{algorithm}
-
-\begin{frame} {Naive Exponentiation}
+\end{minipage}
+}
 Bei ICPC gehen wir davon aus, dass Multiplikation zweier Zahlen in $\mathcal{O}(1)$ liegt, also naive Exponentiation in $\mathcal{O}(n)$
 \end{frame}
 
@@ -160,13 +191,15 @@ Beobachtung:
    x^{n} =
    \begin{cases}
      (x^{2})^{n/2} & \text{f"ur n gerade} \\
-      x*(x^{2})^{(n-1)/2} & \text{f"ur n ungerade} \\
+      x\cdot(x^{2})^{(n-1)/2} & \text{f"ur n ungerade} \\
    \end{cases}
 \end{equation}
 \end{frame}
 
-
-\begin{algorithm}
+\begin{frame} {Exponentiation by Squaring, rekursiv}
+\scalebox{1.0}{
+\begin{minipage}{1.0\linewidth}
+\begin{algorithm} [H]
 \scriptsize 
 \caption{Exponentiation(n, x) (rekursiv)}
 \begin{algorithmic}
@@ -182,13 +215,33 @@ Beobachtung:
 \ENDIF
 \end{algorithmic}
 \end{algorithm}
-%\begin{frame} {Exponentiation by squaring, rekursive Implementierung}
-%\end{frame}
+\end{minipage}
+}
+Da Multiplikation konstant viel Zeit ben"otigt, liegt die Exponentiation in $\mathcal{O}(log(n))$
+\end{frame}
 
+\begin{frame} {Beispiel}
+$2^ {10638} = (2^{5319})^{2}  $ \\
+$2^ {5319} = 2 \cdot (2^{2659})^{2}  $ \\
+$2^ {2659} = 2 \cdot (2^{1329})^{2}  $ \\
+$2^ {1329} = 2 \cdot (2^{664})^{2}  $ \\
+$2^ {664} = (2^{332})^{2}  $ \\
+$2^ {332} = (2^{166})^{2}  $ \\
+$2^ {166} = (2^{83})^{2}  $ \\
+$2^ {83} = 2 \cdot (2^{41})^{2}  $ \\
+$2^ {41} = 2 \cdot (2^{20})^{2}  $ \\
+$2^ {20} = (2^{10})^{2}  $ \\
+$2^ {10} = (2^{5})^{2}  $ \\
+$2^ {5} = 2 \cdot (2^{2})^{2}  $ \\
+$2^ {2} = (2^{1})^{2}  $ \\
+\end{frame}
 
-\begin{algorithm}
+\begin{frame} {Exponentiation by Squaring, iterativ}
+\scalebox{1.0}{
+\begin{minipage}{1.0\linewidth}
+\begin{algorithm} [H]
 \scriptsize 
-\caption{Exponentiation(n, x) (rekursiv)}
+\caption{Exponentiation(n, x) (iterativ)}
 \begin{algorithmic}
 \IF{$n < 0$}
 \STATE {$n = -n$}
@@ -210,10 +263,11 @@ Beobachtung:
 \ENDWHILE
 \end{algorithmic}
 \end{algorithm}
-
-\begin{frame} {Exponentiation by squaring, Laufzeit}
-Da Multiplikation konstant viel Zeit ben"otigt, liegt die Exponentiation in $\mathcal{O}(log(n))$
+\end{minipage}
+}
 \end{frame}
+
+
 
 %%\begin{frame}{Hier kommt ein kleines Beispiel auf dem Tafel}
 %%\end{frame}
@@ -230,7 +284,7 @@ Bei ICPC-Aufgaben erkennbar an:
 \begin{itemize}
 	\item "Wie viele Moeglichkeiten gibt es, ..?"
 	\item "Berechne die Anzahl an X.."
-	\item Alles, was mit Zaehlen zu tun hat
+	\item Alles, was mit Z"ahlen zu tun hat
 \end{itemize}
 \end{frame}
 
@@ -248,7 +302,7 @@ Die L"osung f"ur eine Kombinatorik-ICPC-Aufgabe ist meist eine kurze rekursive F
 \end{frame}
 
 \begin{frame}{Kombinatorik bei ICPC}
-G"anige Formeln sollte man kennen... \\
+G"angige Formeln sollte man kennen... \\
 ...oder ausprobieren! \\
 
 \begin{block}{On-Line Encyclopedia of Integer Sequences}
@@ -286,10 +340,10 @@ Sollte man erkennen!
 \(f(n) = \frac{(\phi^{n} - (-\phi)^{-n}) }{ \sqrt{5}}\)\\
 \(\phi :=\)  goldener Schnitt\\
 \(\phi = \frac{ (1+\sqrt{5})}{2}\)\\
-\(\phi\) gerundet nutzen. Anzahl der Nachkommastellen entscheidet über Genauigkeit!
+\(\phi\) gerundet nutzen. Anzahl der Nachkommastellen entscheidet "uber Genauigkeit!
 
 \item oder vorberechnen!\\
-\item Achtung: Wird sehr schnell sehr groß.
+\item Achtung: Wird sehr schnell sehr gro"s.
 \end{itemize}
 \end{frame}
 
@@ -305,7 +359,7 @@ Sollte man erkennen!
 Wie viele M"oglichkeiten gibt es, $k$ Objekte aus einer Menge von $n$ verschiedenen Objekten zu ziehen?
 
 \begin{align*}
-C\left( n,k \right) = \binom{n}{k} = \frac{n!}{\left( n-k \right) ! \times k!}
+C\left( n,k \right) = \binom{n}{k} = \frac{n!}{\left( n-k \right) ! \cdot k!}
 \end{align*}
 Rekursive Definition:
 \begin{align*}
@@ -321,24 +375,6 @@ C\left( n,k \right) &= C\left( n-1,k-1 \right) + C\left( n-1,k \right)
 	\includegraphics[scale=0.15]{binom.png}
 \end{figure}
 \end{frame}
-
-\begin{algorithm}
-\scriptsize 
-\caption{Binomialkoeffizient(n, k)}
-\begin{algorithmic}
-\IF {$k > n-k$}
-\STATE $k \leftarrow n-k$
-\ENDIF
-\STATE $result \leftarrow 1$
-\STATE $i \leftarrow 0$
-\WHILE {$i < k$}
-\STATE $result \leftarrow result \times \left( n - 1 \right)$
-\STATE $result \leftarrow result \div \left( i + 1 \right)$
-\STATE $i++$
-\ENDWHILE
-\STATE return $result$
-\end{algorithmic}
-\end{algorithm}
 
 \begin{frame}{Binomialkoeffizient - Implementierung}
 \begin{itemize}
@@ -360,6 +396,29 @@ C\left( n,k \right) &= C\left( n-1,k-1 \right) + C\left( n-1,k \right)
 \end{frame}
 
 
+\begin{frame} {Implementierung}
+\scalebox{1.0}{
+\begin{minipage}{1.0\linewidth}
+\begin{algorithm} [H]
+\scriptsize 
+\caption{Binomialkoeffizient(n, k)}
+\begin{algorithmic}
+\IF {$k > n-k$}
+\STATE $k \leftarrow n-k$
+\ENDIF
+\STATE $result \leftarrow 1$
+\STATE $i \leftarrow 0$
+\WHILE {$i < k$}
+\STATE $result \leftarrow result \cdot \left( n - 1 \right)$
+\STATE $result \leftarrow result \div \left( i + 1 \right)$
+\STATE $i++$
+\ENDWHILE
+\STATE return $result$
+\end{algorithmic}
+\end{algorithm}
+\end{minipage}
+}
+\end{frame}
 
 \begin{frame}{Aufgabe - Der Mathetest}
 \begin{itemize}
@@ -382,7 +441,7 @@ Cat \left( n \right) &= \frac{1}{n+1} \binom{2n}{n}
 Rekursiv:
 \begin{align*}
 Cat \left( 0 \right) &= 1 \\
-Cat \left( n + 1 \right) &= \sum_{i=0}^n Cat \left( i \right) \times Cat \left( n - i \right)
+Cat \left( n + 1 \right) &= \sum_{i=0}^n Cat \left( i \right) \cdot Cat \left( n - i \right)
 \end{align*}
 
 Also: 1, 1, 2, 5, 14, 42, 132, 429, ...
@@ -398,14 +457,20 @@ $Cat \left( n \right)$ entspricht zum Beispiel:
 \end{itemize}
 \end{frame}
 
-\begin{algorithm}
+\begin{frame} {Implementierung}
+\scalebox{1.0}{
+\begin{minipage}{1.0\linewidth}
+\begin{algorithm} [H]
 \scriptsize 
 \caption{Catalan(n)}
 \begin{algorithmic}
-\STATE $result = Binomialkoeffizient \left( 2 \times n , n \right)$
+\STATE $result = Binomialkoeffizient \left( 2 \cdot n , n \right)$
 \STATE return $result \div \left(n + 1 \right)$
 \end{algorithmic}
 \end{algorithm}
+\end{minipage}
+}
+\end{frame}
 
 \begin{frame}{Catalan Nummern - Implementierung}
 \begin{itemize}
@@ -576,7 +641,7 @@ Schritt 2:
 
 \begin{frame}{Implementierung}
 \begin{itemize}
-\item Wie gewohnt als Baum
+\item Wie gew"ohnt als Baum
 \lstinputlisting[language=c++]{minmax1.cpp}
 \item Spieler-IDs k"onnen weggelassen werden
 \lstinputlisting[language=c++]{minmax2.cpp}
