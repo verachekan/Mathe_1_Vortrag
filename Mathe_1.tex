@@ -466,109 +466,113 @@ Schritt 2:
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Erstellen eines Spielbaumes}
-\includegraphics[scale=0.55]{baum0.png}
+\begin{frame}{Erstellen eines Spielbaums}
+\only<1-1>{\includegraphics[scale=0.4]{baum0.png}
 \end{frame}
 
-\begin{frame}{Erstellen eines Spielbaumes}
-\includegraphics[scale=0.55]{baum1.png}
+\begin{frame}{Erstellen eines Spielbaums}
+\includegraphics[scale=0.4]{baum10.png}
 \end{frame}
 
-\begin{frame}{Erstellen eines Spielbaumes}
-\includegraphics[scale=0.55]{baum2.png}
+\begin{frame}{Erstellen eines Spielbaums}
+\includegraphics[scale=0.4]{baum11.png}
 \end{frame}
 
-\begin{frame}{Erstellen eines Spielbaumes}
-\includegraphics[scale=0.55]{baum3.png}
+\begin{frame}{Erstellen eines Spielbaums}
+\includegraphics[scale=0.4]{baum12.png}
 \end{frame}
 
-\begin{frame}{Erstellen eines Spielbaumes}
-\includegraphics[scale=0.55]{baum4.png}
+\begin{frame}{Erstellen eines Spielbaums}
+\includegraphics[scale=0.4]{baum13.png}
 \end{frame}
 
-\begin{frame}{Erstellen eines Spielbaumes}
-\includegraphics[scale=0.55]{baum5.png}
+\begin{frame}{Erstellen eines Spielbaums}
+\includegraphics[scale=0.4]{baum14.png}
 \end{frame}
 
-\begin{frame}{Erstellen eines Spielbaumes}
-\includegraphics[scale=0.55]{baum6.png}
+\begin{frame}{Erstellen eines Spielbaums}
+\includegraphics[scale=0.4]{baum15.png}
 \end{frame}
 
-\begin{frame}{Erstellen eines Spielbaumes}
-\includegraphics[scale=0.55]{baum7.png}
+\begin{frame}{Erstellen eines Spielbaums}
+\includegraphics[scale=0.4]{baum16.png}
 \end{frame}
 
-\begin{frame}{Erstellen eines Spielbaumes}
-\includegraphics[scale=0.55]{baum8.png}
+\begin{frame}{Erstellen eines Spielbaums}
+\includegraphics[scale=0.4]{baum17.png}
 \end{frame}
 
-
-\begin{frame}{Min-Max-Strategie}
-\begin{itemize}
-\item Min-Max-Strategie: Gewinn mit gr"o"stem Unterschied
-\begin{equation}
-   minmax(k) =
-   \begin{cases}
-     k.Bewertung & \text{f"ur k Blatt-Knoten} \\
-     - min\left\{minmax(k') | k' Kindknoten\right\} & \text{sonst} \\
-   \end{cases}
-\end{equation}
-\end{itemize}
-\end{frame}
-
-\begin{frame}{Andere Berechnungsm"oglichkeit}
-\includegraphics[scale=0.55]{baum10.png}
-\end{frame}
-
-\begin{frame}{Andere Berechnungsm"oglichkeit}
-\includegraphics[scale=0.55]{baum11.png}
-\end{frame}
-
-\begin{frame}{Andere Berechnungsm"oglichkeit}
-\includegraphics[scale=0.55]{baum12.png}
-\end{frame}
-
-\begin{frame}{Andere Berechnungsm"oglichkeit}
-\includegraphics[scale=0.55]{baum13.png}
-\end{frame}
-
-\begin{frame}{Andere Berechnungsm"oglichkeit}
-\includegraphics[scale=0.55]{baum14.png}
-\end{frame}
-
-\begin{frame}{Andere Berechnungsm"oglichkeit}
-\includegraphics[scale=0.55]{baum15.png}
-\end{frame}
-
-\begin{frame}{Andere Berechnungsm"oglichkeit}
-\includegraphics[scale=0.55]{baum16.png}
-\end{frame}
-
-\begin{frame}{Andere Berechnungsm"oglichkeit}
-\includegraphics[scale=0.55]{baum17.png}
-\end{frame}
-
-\begin{frame}{Andere Berechnungsm"oglichkeit}
-\includegraphics[scale=0.55]{baum18.png}
+\begin{frame}{Erstellen eines Spielbaums}
+\includegraphics[scale=0.4]{baum18.png}
 \end{frame}
 
 \begin{frame}{Min-Max-Strategie}
 \begin{itemize}
-\item Min-Max-Strategie: Gewinn mit gr"o"stem Unterschied
-\begin{equation}
-   minmax(k) =
-   \begin{cases}
-     k.Bewertung & \text{f"ur k Blatt-Knoten} \\
-     - min\left\{minmax(k') | k' Kindknoten\right\} & \text{sonst} \\
-   \end{cases}
-\end{equation}
-\item Andere M"oglichkeit der Berechnung:
+\item Min-Max-Strategie: Gewinn mit dem gr"o"stem Unterschied
 \begin{equation}
    minmax(s,k) =
    \begin{cases}
      k.Bewertung & \text{f"ur k Blatt-Knoten} \\
      min\left\{minmax(k') | k' Kindknoten\right\} & \text{falls s = A} \\
      max\left\{minmax(k') | k' Kindknoten\right\} & \text{falls s = B} \\
+   \end{cases}
+\end{equation}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Andere Berechnungsm"oglichkeit}
+\includegraphics[scale=0.4]{baum0.png}
+\end{frame}
+
+\begin{frame}{Andere Berechnungsm"oglichkeit}
+\includegraphics[scale=0.4]{baum1.png}
+\end{frame}
+
+\begin{frame}{Andere Berechnungsm"oglichkeit}
+\includegraphics[scale=0.4]{baum2.png}
+\end{frame}
+
+\begin{frame}{Andere Berechnungsm"oglichkeit}
+\includegraphics[scale=0.4]{baum3.png}
+\end{frame}
+
+\begin{frame}{Andere Berechnungsm"oglichkeit}
+\includegraphics[scale=0.4]{baum4.png}
+\end{frame}
+
+\begin{frame}{Andere Berechnungsm"oglichkeit}
+\includegraphics[scale=0.4]{baum5.png}
+\end{frame}
+
+\begin{frame}{Andere Berechnungsm"oglichkeit}
+\includegraphics[scale=0.4]{baum6.png}
+\end{frame}
+
+\begin{frame}{Andere Berechnungsm"oglichkeit}
+\includegraphics[scale=0.4]{baum7.png}
+\end{frame}
+
+\begin{frame}{Andere Berechnungsm"oglichkeit}
+\includegraphics[scale=0.4]{baum8.png}
+\end{frame}
+
+\begin{frame}{Min-Max-Strategie}
+\begin{itemize}
+\item Min-Max-Strategie: Gewinn mit dem gr"o"stem Unterschied
+\begin{equation}
+   minmax(s,k) =
+   \begin{cases}
+     k.Bewertung & \text{f"ur k Blatt-Knoten} \\
+     min\left\{minmax(k') | k' Kindknoten\right\} & \text{falls s = A} \\
+     max\left\{minmax(k') | k' Kindknoten\right\} & \text{falls s = B} \\
+   \end{cases}
+\end{equation}
+\item Man kann die Spieler-IDs auch weglassen:
+\begin{equation}
+   minmax(k) =
+   \begin{cases}
+     k.Bewertung & \text{f"ur k Blatt-Knoten} \\
+     - min\left\{minmax(k') | k' Kindknoten\right\} & \text{sonst} \\
    \end{cases}
 \end{equation}
 \end{itemize}
@@ -655,7 +659,17 @@ Es gibt sechs m"ogliche Nachfolgerzust"ande:
 \end{frame}
 
 \begin{frame}{ICPC-Aufgabe}
+\begin{exampleblock}{Schokoladenspiel}
+Bunty and Dolly are playing a game, described as follows.\\
+There are two boxes full of chocolates. Both can eat 'L' (L$\geq\ $1) chocolates from any one box or 'L' chocolates from both the box in each step. They play the game alternatively and the last one to eat the chocolate will be the winner.\\
+As Bunty wants to impress Dolly, he wants to make Dolly the winner. You have to help Bunty in deciding who should play first.\\
+Assume that both the players play the game optimally.
+\end{exampleblock}
+\pause
+\begin{block}{L"osungsidee}
+Nim-Spiel mit zwei Stapeln, also beide Werte bin"ar mit XOR verkn"upfen.
+Bei 0 beginnt Dolly, sonst Bunty.
+\end{block}
 \end{frame}
-
 
 \end{document}
