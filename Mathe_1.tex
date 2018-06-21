@@ -282,7 +282,7 @@ $2^ {2} = (2^{1})^{2}  $ \\
 
 Bei ICPC-Aufgaben erkennbar an:
 \begin{itemize}
-	\item "Wie viele Moeglichkeiten gibt es, ..?"
+	\item "Wie viele M"oglichkeiten gibt es, ..?"
 	\item "Berechne die Anzahl an X.."
 	\item Alles, was mit Z"ahlen zu tun hat
 \end{itemize}
@@ -327,7 +327,7 @@ Unter http://oeis.org/ kann man die ersten L"osungen f"ur kleine Probleminstanze
 \(f(1)=1\)\\
 \(n>1: f(n)=f(n-1)+f(n-2)\)\\
 \end{block}
-Also: \(0, 1, 1, 2, 3, 4, 8, 13, 21, 34, 55, 89...\)\\
+Also: \(0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89...\)\\
 
 Sollte man erkennen!
 \end{frame}
@@ -446,8 +446,7 @@ Laufzeit: $O \left( nk \right)$, Platzbedarf: $O \left( nk \right)$
 \STATE $result \leftarrow 1$
 \STATE $i \leftarrow 0$
 \WHILE {$i < k$}
-\STATE $result \leftarrow result \cdot \left( n - i \right)$
-\STATE $result \leftarrow result \div \left( i + 1 \right)$
+\STATE $result \leftarrow result \cdot \frac{\left( n - i \right)}{\left( i + 1 \right)}$
 \STATE $i++$
 \ENDWHILE
 \STATE return $result$
