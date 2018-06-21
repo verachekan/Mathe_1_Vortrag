@@ -383,20 +383,57 @@ C\left( n,k \right) &= C\left( n-1,k-1 \right) + C\left( n-1,k \right)
 \item $\rightarrow$ Viel zu langsam!
 \end{itemize}
 \item Vorberechnen
+\end{itemize}
+\end{frame}
+
+\begin{frame} {Binomialkoeffizient DP Bottom-Up}
+\scalebox{1.0}{
+\begin{minipage}{1.0\linewidth}
+\begin{algorithm} [H]
+\scriptsize 
+\caption{Binomialkoeffizient(n, k)}
+\begin{algorithmic}
+\STATE $C \leftarrow int \lbrack n+1 \rbrack \lbrack k+1 \rbrack$
+\STATE $i \leftarrow 0$
+\WHILE {$i <= n$}
+\STATE $j \leftarrow 0$
+\WHILE {$j <= min(i,k)$}
+\IF {$j == 0 | j == i$}
+\STATE $C \lbrack i \rbrack \lbrack j \rbrack \leftarrow 1$
+\ELSE
+\STATE $C \lbrack i \rbrack \lbrack j \rbrack \leftarrow C \lbrack i-1 \rbrack \lbrack j-1 \rbrack + C \lbrack i-1 \rbrack \lbrack j \rbrack$
+\ENDIF
+\STATE $j++$
+\ENDWHILE
+\STATE $i++$
+\ENDWHILE
+\STATE return $C \lbrack n \rbrack \lbrack k \rbrack$
+\end{algorithmic}
+\end{algorithm}
+\end{minipage}
+}
+Laufzeit: $O \left( nk \right)$, Platzbedarf: $O \left( nk \right)$
+\end{frame}
+
+\begin{frame}{Binomialkoeffizient - Implementierung}
+\begin{itemize}
+\item Naiv rekursiv
+\begin{itemize}
+\item $\rightarrow$ Viel zu langsam!
+\end{itemize}
+\item Vorberechnen
 \begin{itemize}
 \item Meist interessieren nicht alle Werte
-\item $\rightarrow$ Top-Down mit Zwischenspeichern
-\item Lineare Laufzeit
+\item $\rightarrow$ Top-Down rekursiv mit Zwischenspeichern
 \end{itemize}
 \item Mit nicht-rekursiver Formel
 \begin{itemize}
-\item Lineare Laufzeit
+\item $C\left( n,k \right) = \frac{n!}{\left( n-k \right) ! \cdot k!} = C\left( n, n -k \right)$
 \end{itemize}
 \end{itemize}
 \end{frame}
 
-
-\begin{frame} {Implementierung}
+\begin{frame} {Binomialkoeffizient Nicht-Rekursiv}
 \scalebox{1.0}{
 \begin{minipage}{1.0\linewidth}
 \begin{algorithm} [H]
@@ -409,7 +446,7 @@ C\left( n,k \right) &= C\left( n-1,k-1 \right) + C\left( n-1,k \right)
 \STATE $result \leftarrow 1$
 \STATE $i \leftarrow 0$
 \WHILE {$i < k$}
-\STATE $result \leftarrow result \cdot \left( n - 1 \right)$
+\STATE $result \leftarrow result \cdot \left( n - i \right)$
 \STATE $result \leftarrow result \div \left( i + 1 \right)$
 \STATE $i++$
 \ENDWHILE
@@ -418,6 +455,7 @@ C\left( n,k \right) &= C\left( n-1,k-1 \right) + C\left( n-1,k \right)
 \end{algorithm}
 \end{minipage}
 }
+Laufzeit: $O \left( \frac{n}{2} \right)$, Platzbedarf: $O \left( 1 \right)$
 \end{frame}
 
 \begin{frame}{Aufgabe - Der Mathetest}
@@ -457,7 +495,56 @@ $Cat \left( n \right)$ entspricht zum Beispiel:
 \end{itemize}
 \end{frame}
 
-\begin{frame} {Implementierung}
+\begin{frame}{Catalan Nummern - Implementierung}
+\begin{itemize}
+\item Naiv rekursiv
+\begin{itemize}
+\item $\rightarrow$ Viel zu langsam! 
+\end{itemize}
+\item Rekursiv mit DP
+\end{itemize}
+\end{frame}
+
+\begin{frame} {Catalan Nummern DP Bottom-Up}
+\scalebox{1.0}{
+\begin{minipage}{1.0\linewidth}
+\begin{algorithm} [H]
+\scriptsize 
+\caption{Catalan(n)}
+\begin{algorithmic}
+\STATE $Cat \leftarrow int \lbrack n+1 \rbrack$
+\STATE $Cat \lbrack 0 \rbrack \leftarrow 1$
+\STATE $Cat \lbrack 1 \rbrack \leftarrow 1$
+\STATE $i \leftarrow 2$
+\WHILE {$i <= n$}
+\STATE $Cat \lbrack i \rbrack \leftarrow 0$
+\STATE $j \leftarrow 0$
+\WHILE {$j < i$}
+\STATE $Cat \lbrack i \rbrack \leftarrow Cat \lbrack i \rbrack + Cat \lbrack j \rbrack \cdot Cat \lbrack i-j-1 \rbrack$
+\STATE $j++$
+\ENDWHILE
+\STATE $i++$
+\ENDWHILE
+\STATE return $Cat \lbrack n \rbrack$
+\end{algorithmic}
+\end{algorithm}
+\end{minipage}
+}
+Laufzeit: $O \left( n^2 \right)$, Platzbedarf: $O \left( n \right)$
+\end{frame}
+
+\begin{frame}{Catalan Nummern - Implementierung}
+\begin{itemize}
+\item Naiv rekursiv
+\begin{itemize}
+\item $\rightarrow$ Viel zu langsam! 
+\end{itemize}
+\item Rekursiv mit DP
+\item Mit Binomialkoeffizient
+\end{itemize}
+\end{frame}
+
+\begin{frame} {Catalan Nummern}
 \scalebox{1.0}{
 \begin{minipage}{1.0\linewidth}
 \begin{algorithm} [H]
@@ -470,6 +557,7 @@ $Cat \left( n \right)$ entspricht zum Beispiel:
 \end{algorithm}
 \end{minipage}
 }
+Laufzeit: $O \left( n \right)$, Platzbedarf: $O \left( 1 \right)$
 \end{frame}
 
 \begin{frame}{Catalan Nummern - Implementierung}
@@ -479,17 +567,14 @@ $Cat \left( n \right)$ entspricht zum Beispiel:
 \item $\rightarrow$ Viel zu langsam! 
 \end{itemize}
 \item Rekursiv mit DP
-\begin{itemize}
-\item $\rightarrow$ Immernoch quadratische Laufzeit!
-\end{itemize}
 \item Mit Binomialkoeffizient
+\item \textbf{Achtung:} Catalan Nummern wachsen sehr schnell!
 \begin{itemize}
-\item $\rightarrow$ Lineare Laufzeit!
+\item $Cat \left( 10 \right) > 10^5$
+\item $Cat \left( 19 \right) > 10^{10}$ 
 \end{itemize}
 \end{itemize}
 \end{frame}
-
-
 
 
 \section{Spieltheorie}
